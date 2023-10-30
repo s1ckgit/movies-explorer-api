@@ -8,7 +8,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id).orFail()
     .then((user) => {
-      res.stauts(SUCCES_CODE).send(user);
+      res.status(SUCCES_CODE).send(user);
     })
     .catch(next);
 };
@@ -42,14 +42,15 @@ module.exports.createUser = (req, res, next) => {
           });
         })
         .catch(next);
-    });
+    })
+    .catch(next);
 };
 
 module.exports.loginUser = (req, res, next) => {
   const { email, password } = req.body;
   User.findByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key', { expiresIn: '7d' });
 
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,

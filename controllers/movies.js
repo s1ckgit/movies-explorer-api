@@ -4,7 +4,7 @@ const { SUCCES_CODE, SUCCES_CREATED_CODE } = require('../data/responseStatuses')
 module.exports.getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
     .then((movies) => {
-      res.stauts(SUCCES_CODE).send(movies);
+      res.status(SUCCES_CODE).send(movies);
     })
     .catch(next);
 };
@@ -36,9 +36,24 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
+    owner: req.user._id,
   })
     .then((movie) => {
-      res.status(SUCCES_CREATED_CODE).send(movie);
+      res.status(SUCCES_CREATED_CODE).send({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId,
+        owner: movie.owner,
+        _id: movie._id,
+      });
     })
     .catch(next);
 };
