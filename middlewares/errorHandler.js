@@ -11,7 +11,7 @@ module.exports = (err, req, res, next) => {
   } else if (err instanceof DocumentNotFoundError) {
     res.status(NOT_FOUND_CODE).send({ message: 'Данные не были найдены' });
   } else if (err instanceof ValidationError) {
-    res.status(BAD_REQUEST_CODE).send({ message: 'Ошибка валидации, проверьте корректность данных', errors: err });
+    res.status(BAD_REQUEST_CODE).send({ message: 'Ошибка валидации, проверьте корректность данных', err });
   } else if (err instanceof UnathorizedError) {
     res.status(err.statusCode).send({ message: err.message });
   } else if (err.code === 11000) {
