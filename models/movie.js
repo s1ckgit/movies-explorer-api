@@ -22,11 +22,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
   },
   image: {
-    required: true,
     type: String,
     validate: {
       validator(v) {
-        return /https?:\/\/(www\.)?[\w-]+\.\w+(\/.+)?/i.test(v);
+        return /\/[\w-]+(\/.+)?/i.test(v);
       },
     },
   },
@@ -44,7 +43,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        return /https?:\/\/(www\.)?[\w-]+\.\w+(\/.+)?/i.test(v);
+        return /\/[\w-]+(\/.+)?/i.test(v);
       },
     },
   },

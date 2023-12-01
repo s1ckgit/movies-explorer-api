@@ -50,6 +50,7 @@ module.exports.loginUser = (req, res, next) => {
   const { email, password } = req.body;
   User.findByCredentials(email, password)
     .then((user) => {
+      const { name, email: userEmail, _id } = user;
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key', { expiresIn: '7d' });
 
       res.cookie('jwt', token, {
@@ -57,7 +58,11 @@ module.exports.loginUser = (req, res, next) => {
         httpOnly: true,
       })
         .status(SUCCES_CODE)
-        .send({ message: 'Авторизация успешна' });
+        .send({
+          name,
+          email: userEmail,
+          _id,
+        });
     })
     .catch(next);
 };
