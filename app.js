@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://diploma.siick.nomoredomainsrocks.ru'] }));
+app.use(cors({ credentials: true, origin: ['http://diploma.siick.nomoredomainsrocks.ru', 'https://diploma.siick.nomoredomainsrocks.ru', 'http://localhost:3000'] }));
 app.use(limiter);
 app.use(helmet());
 
