@@ -7,13 +7,13 @@ module.exports.createMovieValidation = celebrate({
     duration: Joi.number().required(),
     year: Joi.number().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().regex(/https?:\/\/(www\.)?[\w-]+\.\w+(\/.+)?/i),
+    image: Joi.string().required().regex(/\/[\w-]+(\/.+)?/i),
     trailerLink: Joi.string().required().regex(/https?:\/\/(www\.)?[\w-]+\.\w+(\/.+)?/i),
-    thumbnail: Joi.string().required().regex(/https?:\/\/(www\.)?[\w-]+\.\w+(\/.+)?/i),
+    thumbnail: Joi.string().required().regex(/\/[\w-]+(\/.+)?/i),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     movieId: Joi.number().required(),
-  }),
+  }).unknown(),
 });
 
 module.exports.deleteMovieValidation = celebrate({

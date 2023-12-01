@@ -6,10 +6,12 @@ const { createUser, loginUser, logoutUser } = require('../controllers/users');
 const signInValidation = require('../middlewares/signInValidation');
 const signUpValidation = require('../middlewares/signUpValidation');
 const NotFoundError = require('../errors/NotFound');
+const { checkJwt } = require('../controllers/jwt');
 
 router.post('/signin', signInValidation, loginUser);
 router.post('/signup', signUpValidation, createUser);
 router.post('/signout', logoutUser);
+router.post('/check-jwt', checkJwt);
 router.use(auth);
 router.use('/users', usersRouter);
 router.use('/movies', moviesRouter);
