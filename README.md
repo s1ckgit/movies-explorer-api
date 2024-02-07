@@ -1,7 +1,7 @@
-# movies-explorer-api
+# Бэкэнд часть дипломного проекта movies-explorer для Яндекс.Практикум
 
-API дипломной работы 
-
-Домен - api.diploma.siick.nomoredomainsrocks.ru
-
-IP адрес - 84.201.167.51
+## Стэк:
+* JavaScript
+* Node.js
+* Express.js
+* MongoDB
